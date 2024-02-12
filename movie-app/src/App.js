@@ -1,11 +1,12 @@
-import React,{  useState , useEffect } from 'react';
+import React,{ useState , useEffect } from 'react';
 import './App.css';
 import MovieBox from './MovieBox';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Form, FormControl, Nav, Navbar, Button } from 'react-bootstrap';
+import ReactDOM from 'react-dom';
 
 const API_URL='https://api.themoviedb.org/3/movie/popular?api_key=724291aa1f2e89f75787cf66d5d1d8c8';
-const API_SEARCH='https://api.themoviedb.org/3/search/movie?api_key=724291aa1f2e89f75787cf66d5d1d8c8&query';
+// const API_SEARCH='https://api.themoviedb.org/3/search/movie?api_key=724291aa1f2e89f75787cf66d5d1d8c8&query';
 
 function App() {
 
@@ -73,18 +74,22 @@ function App() {
         <div className='container'>
           <div className='grid'>
             {movies.map((movieReq)=>
-            <MovieBox key={movieReq.id} {...movieReq}/>)}
+            <MovieBox key={movieReq.id} title={movieReq.title} {...movieReq}/>)}
           </div>
         </div>
         ):(
           <h2>Désolé !! Aucun Film Trouvé</h2>
         )}
-        
-      
-    
       </div>
     </>
   );
 }
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 export default App;

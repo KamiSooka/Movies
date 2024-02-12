@@ -7,10 +7,11 @@ body{
   text-decoration: none;
   list-style-type: none;
   outline: none;
-  background-image: url("comics-movies-app.avif");
+  background-image: url('comics-movies-app.avif');
+
 }
 
-.container{
+/* .container{
   width: 100%;
   margin: 1em auto;
   background-color: darkslategray;
@@ -32,4 +33,48 @@ h2{
   background-color: antiquewhite;
   text-align: center;
   padding: 1em;
+} */
+
+/* Styles généraux */
+.container {
+  width: 100%;
+  margin: 1em auto;
+  background-color: darkslategray;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0.2em;
+  justify-content: center;
+}
+
+.card-img-top {
+  width: 14rem;
+}
+
+h2 {
+  background-color: antiquewhite;
+  text-align: center;
+  padding: 1em;
+}
+
+/* Styles pour les appareils mobiles */
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-img-top {
+    width: 10rem;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
 }
