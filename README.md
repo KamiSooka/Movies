@@ -1,2 +1,2 @@
 # Movies
-Movies application - with - searchBar
+Movies application - with - searchBar - and - images
