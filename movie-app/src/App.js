@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import MovieBox from './MovieBox';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Form, FormControl, Nav, Navbar, } from 'react-bootstrap';
+import { Container, Form, FormControl, Nav, Navbar, Button } from 'react-bootstrap';
 
 const API_URL = 'https://api.themoviedb.org/3/movie/popular?api_key=724291aa1f2e89f75787cf66d5d1d8c8';
 const API_SEARCH = 'https://api.themoviedb.org/3/search/movie?api_key=724291aa1f2e89f75787cf66d5d1d8c8&query=';
@@ -10,34 +10,30 @@ const API_SEARCH = 'https://api.themoviedb.org/3/search/movie?api_key=724291aa1f
 function App() {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
+  
   useEffect(() => {
-    fetch(API_URL)
-      .then((res) => res.json())
-      .then(data => {
+    const fetchMovies = async () => {
+      try {
+        const url = query ? `${API_SEARCH}${query}&page=${currentPage}` : `${API_URL}&page=${currentPage}`;
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await res.json();
         setMovies(data.results);
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching movies:', error);
-      });
-  }, []);
-
-  const searchMovie = async (searchQuery) => {
-    if (!searchQuery) {
-      return; // Sortie de la fonction si aucune recherche n'est saisie
-    }
-    try {
-      const search = `${API_SEARCH}${searchQuery}`;
-      const res = await fetch(search);
-      if (!res.ok) {
-        throw new Error('Network response was not ok');
       }
-      const data = await res.json();
-      setMovies(data.results);
-      console.log(data.results);
-    } catch (error) {
-      console.error('Error searching movies:', error);
-    }
+    };
+  
+    fetchMovies();
+  }, [currentPage, query]);
+  
+  const searchMovie = (searchQuery) => {
+    setQuery(searchQuery);
+    setCurrentPage(1); // Reset currentPage to 1 when performing a new search
   };
 
   const changeHandler = (e) => {
@@ -46,14 +42,21 @@ function App() {
     searchMovie(searchQuery);
   };
 
+  const nextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
 
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
     <>
       <Navbar bg="dark" expand="lg" variant='dark'>
         <Container fluid>
           <Navbar.Brand href='/home'>MovieDb App</Navbar.Brand>
-          {/* <Navbar.Brand href='/home'>Tendance</Navbar.Brand> */}
           <Navbar.Toggle aria-controls='navbarScroll'></Navbar.Toggle>
 
           <Navbar.Collapse id="nabarScroll">
@@ -89,6 +92,12 @@ function App() {
         ) : (
           <h2>Désolé !! Aucun Film Trouvé</h2>
         )}
+      </div>
+
+      {/* Ajoutez les boutons de navigation en bas de la page */}
+      <div style={{ textAlign: 'center', margin: '20px' }}>
+        <Button variant="secondary" onClick={prevPage}>Page précédente</Button>{' '}
+        <Button variant="secondary" onClick={nextPage}>Page suivante</Button>
       </div>
     </>
   );
