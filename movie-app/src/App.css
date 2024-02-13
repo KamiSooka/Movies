@@ -1,80 +1,112 @@
-@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,3001,400,4001,600,6001,700&display=swap");
+/* @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,3001,400,4001,600,6001,700&display=swap");
 
-body{
+body {
   font-family: "Source Sans Pro", sans-serif;
   margin: 0;
   padding: 0;
   text-decoration: none;
-  list-style-type: none;
-  outline: none;
   background-image: url('comics-movies-app.avif');
-
 }
 
-/* .container{
-  width: 100%;
-  margin: 1em auto;
-  background-color: darkslategray;
-}
-
-.grid{
-  display: grid;
-  margin-left: .5px;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 0.2em;
-  justify-content: center;
-}
-
-.card-img-top{
-  width: 14rem;
-}
-
-h2{
+h2 {
+  margin: 0;
+  padding: 25px;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
   background-color: antiquewhite;
   text-align: center;
-  padding: 1em;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 25px;
+  box-sizing: border-box;
+  justify-content: center;
+  gap: 20px;
 } */
 
-/* Styles généraux */
+@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,3001,400,4001,600,6001,700&display=swap");
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  background-image: url('comics-movies-app.avif');
+}
+
+h2 {
+  margin: 0;
+  padding: 25px;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  background-color: antiquewhite;
+  text-align: center;
+}
+
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  margin: 1em auto;
-  background-color: darkslategray;
+}
+
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 25px;
+  box-sizing: border-box;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 0.2em;
-  justify-content: center;
+  grid-template-columns: repeat(4, 1fr); /* 4 films par ligne */
+  grid-gap: 20px; /* Espacement entre les films */
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.card-img-top {
-  width: 14rem;
-}
-
-h2 {
-  background-color: antiquewhite;
-  text-align: center;
-  padding: 1em;
-}
-
-/* Styles pour les appareils mobiles */
-@media only screen and (max-width: 600px) {
-  .container {
-    width: 90%;
-    margin: 0 auto;
-  }
-
+/* Pour les grands écrans */
+@media only screen and (min-width: 1500px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .card-img-top {
-    width: 10rem;
-  }
-
-  h2 {
-    font-size: 1.2em;
+    grid-template-columns: repeat(5, 1fr); /* 5 films par ligne */
   }
 }
+
+
+/* Pour les tablettes et les ordinateurs portables */
+@media only screen and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 films par ligne */
+  }
+}
+
