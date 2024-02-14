@@ -23,6 +23,8 @@ function App() {
         }
         const data = await res.json();
         setMovies(data.results);
+        console.log(data.results);
+        console.log(data.total_pages);
       } catch (error) {
         console.error('Error fetching movies:', error);
       }
@@ -94,9 +96,9 @@ function App() {
         )}
       </div>
 
-      {/* Ajoutez les boutons de navigation en bas de la page */}
       <div style={{ textAlign: 'center', margin: '20px' }}>
-        <Button variant="secondary" onClick={prevPage}>Page précédente</Button>{' '}
+        {(currentPage===1)?null:
+        <Button variant="secondary" onClick={prevPage}>Page précédente</Button>}{' '}
         <Button variant="secondary" onClick={nextPage}>Page suivante</Button>
       </div>
     </>
