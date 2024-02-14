@@ -3,14 +3,15 @@ import './App.css';
 import MovieBox from './MovieBox';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Form, FormControl, Nav, Navbar, Button } from 'react-bootstrap';
-
-const API_URL = 'https://api.themoviedb.org/3/movie/popular?api_key=724291aa1f2e89f75787cf66d5d1d8c8';
-const API_SEARCH = 'https://api.themoviedb.org/3/search/movie?api_key=724291aa1f2e89f75787cf66d5d1d8c8&query=';
+const api_key = process.env.REACT_APP_API_KEY;
+const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${api_key}`;
+const API_SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=`;
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+ 
 
   
   useEffect(() => {
